@@ -1,0 +1,7 @@
+F:\RAConde\.NET Programs\athena\athena.AR.Library\athena.AR.Library\bin\Debug\athena.AR.Library.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Library\athena.AR.Library\bin\Debug\athena.AR.Library.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Library\athena.AR.Library\bin\Debug\athena.AR.Data.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Library\athena.AR.Library\bin\Debug\athena.AR.Data.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Library\athena.AR.Library\obj\Debug\ResolveAssemblyReference.cache
+F:\RAConde\.NET Programs\athena\athena.AR.Library\athena.AR.Library\obj\Debug\athena.AR.Library.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Library\athena.AR.Library\obj\Debug\athena.AR.Library.pdb
