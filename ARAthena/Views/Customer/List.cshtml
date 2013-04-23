@@ -1,0 +1,34 @@
+﻿@model IEnumerable<athena.AR.Models.CustomerModel>
+<div class="metro-chrome-button" onclick="return newCustomer()">
+<H3  style="margin:0px 0 0 10px;">+</h3>
+</div>
+<div style="postion: absolute;margin:-10px 50px;"><p>Create new customer</p></div>
+<br/>  <br/>
+ <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Active</th>
+            <th>Date created</th>
+       </tr>
+       @foreach (var customer in Model)
+       {
+        <tr style="cursor:pointer">
+            <td>@customer.Id</td>
+            <td>@customer.Name</td>
+            <td>@customer.Address</td>
+            <td>@customer.Email</td>
+            <td>@customer.Active</td>
+            <td>@customer.DateCreated</td>
+        </tr>
+       }
+    </table>
+    
+ <div style="right:0; width:100%;">
+                <div id="prev-div" class="float-left" title="@ViewBag.PrevStat">
+                 <input type="submit" class="metro-button" value="Prev" onclick="return getAction('/Customer/List?param=@ViewBag.Param&startIndex=@ViewBag.LastIndex')"/> </div>
+                  <div style="float:left; bottom:0; margin-left:50px">   @ViewBag.RecordRange </div>
+                  <div id="next-div" style="float:left" title="@ViewBag.NextStat">   <input type="submit" class="metro-button" value="Next" onclick="return getAction('/Customer/List?param=@ViewBag.Param&startIndex=@ViewBag.NextIndex')"/> </div>
+ </div>

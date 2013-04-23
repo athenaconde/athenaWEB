@@ -1,0 +1,44 @@
+﻿@model IEnumerable<athena.AR.Models.SalesModel>
+
+<h1>Sales History</h1>
+<table>
+    <tr>
+        <th>
+            Item
+        </th>
+        <th>
+            UnitPrice
+        </th>
+        <th>
+            Qty
+        </th>
+        <th>
+            TotalAmount
+        </th>
+        <th>
+            SalesDate
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesDate)
+        </td>
+     
+    </tr>
+}
+
+</table>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<athena.AR.Models.SalesModel>
+<div class="metro-chrome-button" onclick="return getAction('/Sales/Create')">
+<H3  style="margin:0px 0 0 10px;">+</h3>
+</div>
+<div style="postion: absolute;margin:-10px 50px;"><p>Create new sales</p></div>
+<br/>  <br/> 
+<div>
+@*<h1>Current Sales</h1>
+<br />*@
+ <table>
+                <tr>
+                    <th>Sales Id</th>
+                    <th>Item Description</th>       
+                    <th>Quantity</th>       
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                    <th>Sales Date</th>
+                    <th></th>
+                </tr>
+
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item)
+                    </td>
+                   <td>
+                        @Html.DisplayFor(modelItem => item.Qty)
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesDate)
+                    </td>
+                   @* <td>
+                        @Html.ActionLink("Edit", "Edit", new {item.Id }) |
+                        @Html.ActionLink("Submit payment", "Submit","Payment", new {item.Id}) |
+                        @Html.ActionLink("Payment history", "PaymentHistory", "Payment", new { item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { item.Id })
+                    </td>*@
+                </tr>
+            }
+
+            </table>
+            <div style="right:0; width:100%;">
+                <div id="prev-div" class="float-left" title="@ViewBag.PrevStat">
+                 <input type="submit" class="metro-button" value="Prev" onclick="return getAction('/Sales/SalesData?startIndex=@ViewBag.LastIndex')"/> </div>
+                  <div style="float:left; bottom:0; margin-left:50px">   @ViewBag.RecordRange </div>
+                  <div id="next-div" style="float:left" title="@ViewBag.NextStat">   <input type="submit" class="metro-button" value="Next" onclick="return getAction('/Sales/SalesData?startIndex=@ViewBag.NextIndex')"/> </div>
+            </div>
+</div>
+<script type="text/javascript">
+    function () {
+        var prevStat = $('#prev-div').attr('title').val();
+        if (prevStat == '0')
+            $('#prev-div').hide();
+        var nextStat = $('#next-div').attr('title').val();
+        if (nextStat == '0')
+            $('#next-div').hide();
+    };
+</script>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ARModelStoreContainer" CdmEntityContainer="AREntities">
+    <EntitySetMapping Name="USERs">
+      <EntityTypeMapping TypeName="ARModel.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="LOGGED" ColumnName="LOGGED" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CREDITORs">
+      <EntityTypeMapping TypeName="ARModel.CREDITOR">
+        <MappingFragment StoreEntitySet="CREDITOR">
+          <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+          <ScalarProperty Name="LASTDATEMODIFIED" ColumnName="LASTDATEMODIFIED" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAYMENTs">
+      <EntityTypeMapping TypeName="ARModel.PAYMENT">
+        <MappingFragment StoreEntitySet="PAYMENT">
+          <ScalarProperty Name="PAYMENTDATE" ColumnName="PAYMENTDATE" />
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="RECEIVABLEID" ColumnName="RECEIVABLEID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECEIVABLEs">
+      <EntityTypeMapping TypeName="ARModel.RECEIVABLE">
+        <MappingFragment StoreEntitySet="RECEIVABLE">
+          <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          <ScalarProperty Name="LASTMODIFIEDBYID" ColumnName="LASTMODIFIEDBYID" />
+          <ScalarProperty Name="ISPAID" ColumnName="ISPAID" />
+          <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+          <ScalarProperty Name="DUEDATE" ColumnName="DUEDATE" />
+          <ScalarProperty Name="AMOUNTDUE" ColumnName="AMOUNTDUE" />
+          <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SALES">
+      <EntityTypeMapping TypeName="ARModel.SALE">
+        <MappingFragment StoreEntitySet="SALES">
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="SALESDATE" ColumnName="SALESDATE" />
+          <ScalarProperty Name="TOTALPRICE" ColumnName="TOTALPRICE" />
+          <ScalarProperty Name="UNITPRICE" ColumnName="UNITPRICE" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="CUSTOMERID" ColumnName="CUSTOMERID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECEIVABLEINTERESTs">
+      <EntityTypeMapping TypeName="ARModel.RECEIVABLEINTEREST">
+        <MappingFragment StoreEntitySet="RECEIVABLEINTEREST">
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="MONTHLYINTEREST" ColumnName="MONTHLYINTEREST" />
+          <ScalarProperty Name="MONTHSTOPAY" ColumnName="MONTHSTOPAY" />
+          <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERLOGs">
+      <EntityTypeMapping TypeName="ARModel.USERLOG">
+        <MappingFragment StoreEntitySet="USERLOG">
+          <ScalarProperty Name="IPADD" ColumnName="IPADD" />
+          <ScalarProperty Name="BROWSER" ColumnName="BROWSER" />
+          <ScalarProperty Name="DATETIMELOGOUT" ColumnName="DATETIMELOGOUT" />
+          <ScalarProperty Name="DATETIMELOGIN" ColumnName="DATETIMELOGIN" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

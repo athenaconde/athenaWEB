@@ -1,0 +1,11 @@
+﻿@model IEnumerable<string>
+
+<div id="content">
+  <a href="/" style="color:#fff;"><div class="back-to-main-button"></div></a><br />
+    <ul id="menus">
+        @foreach (var action in Model)
+        {
+            <li>action</li>
+        }
+    </ul>
+</div>

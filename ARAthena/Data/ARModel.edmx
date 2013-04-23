@@ -1,0 +1,719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ARModel.Store" Alias="Self" Provider="IBM.Data.DB2" ProviderManifestToken="DB2/NT, 10.01.0000, 4668063, 0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ARModelStoreContainer">
+          <EntitySet Name="CREDITOR" EntityType="ARModel.Store.CREDITOR" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="PAYMENT" EntityType="ARModel.Store.PAYMENT" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="RECEIVABLE" EntityType="ARModel.Store.RECEIVABLE" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="RECEIVABLEINTEREST" EntityType="ARModel.Store.RECEIVABLEINTEREST" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="SALES" EntityType="ARModel.Store.SALES" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="USER" EntityType="ARModel.Store.USER" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="USERLOG" EntityType="ARModel.Store.USERLOG" store:Type="Tables" Schema="DATA" />
+          <AssociationSet Name="FK_AR_LastModifiedBy_UserId" Association="ARModel.Store.FK_AR_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AR_SalesId" Association="ARModel.Store.FK_AR_SalesId">
+            <End Role="SALES" EntitySet="SALES" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_ARId" Association="ARModel.Store.FK_PayMent_ARId">
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLE" />
+            <End Role="PAYMENT" EntitySet="PAYMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_LastModifiedBy_UserId" Association="ARModel.Store.FK_PayMent_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PAYMENT" EntitySet="PAYMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceivableInterest_Id" Association="ARModel.Store.FK_ReceivableInterest_Id">
+            <End Role="SALES" EntitySet="SALES" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTEREST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceivableInterest_UserId" Association="ARModel.Store.FK_ReceivableInterest_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTEREST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_CustomerId" Association="ARModel.Store.FK_Sales_CustomerId">
+            <End Role="CREDITOR" EntitySet="CREDITOR" />
+            <End Role="SALES" EntitySet="SALES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_LastModifiedBy_UserId" Association="ARModel.Store.FK_Sales_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="SALES" EntitySet="SALES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLog_UserId" Association="ARModel.Store.FK_UserLog_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USERLOG" EntitySet="USERLOG" />
+          </AssociationSet>
+          <AssociationSet Name="FOREIGN" Association="ARModel.Store.FOREIGN">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="CREDITOR" EntitySet="CREDITOR" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CREDITOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="200" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="150" />
+          <Property Name="PHONE" Type="varchar" MaxLength="15" />
+          <Property Name="ACTIVE" Type="integer" Nullable="false" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTDATEMODIFIED" Type="timestamp" Nullable="false" />
+          <Property Name="DATECREATED" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="PAYMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RECEIVABLEID" Type="integer" Nullable="false" />
+          <Property Name="AMOUNT" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+          <Property Name="PAYMENTDATE" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIVABLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SALESID" Type="integer" />
+          <Property Name="AMOUNTDUE" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="DUEDATE" Type="timestamp" Nullable="false" />
+          <Property Name="BALANCE" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ISPAID" Type="integer" Nullable="false" />
+          <Property Name="LASTMODIFIEDBYID" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+          <Property Name="DATECREATED" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="RECEIVABLEINTEREST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SALESID" Type="integer" Nullable="false" />
+          <Property Name="MONTHSTOPAY" Type="integer" Nullable="false" />
+          <Property Name="MONTHLYINTEREST" Type="decimal" Nullable="false" Scale="5" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMERID" Type="integer" Nullable="false" />
+          <Property Name="ITEM" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="QTY" Type="integer" Nullable="false" />
+          <Property Name="UNITPRICE" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="TOTALPRICE" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="SALESDATE" Type="timestamp" Nullable="false" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="CREATEDDATE" Type="timestamp" />
+          <Property Name="ACTIVE" Type="smallint" />
+          <Property Name="LOGGED" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERLOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="USERID" Type="integer" />
+          <Property Name="DATETIMELOGIN" Type="timestamp" Nullable="false" />
+          <Property Name="DATETIMELOGOUT" Type="timestamp" />
+          <Property Name="BROWSER" Type="varchar" MaxLength="100" />
+          <Property Name="IPADD" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_AR_LastModifiedBy_UserId">
+          <End Role="USER" Type="ARModel.Store.USER" Multiplicity="0..1" />
+          <End Role="RECEIVABLE" Type="ARModel.Store.RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="LASTMODIFIEDBYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AR_SalesId">
+          <End Role="SALES" Type="ARModel.Store.SALES" Multiplicity="0..1" />
+          <End Role="RECEIVABLE" Type="ARModel.Store.RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_ARId">
+          <End Role="RECEIVABLE" Type="ARModel.Store.RECEIVABLE" Multiplicity="1" />
+          <End Role="PAYMENT" Type="ARModel.Store.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECEIVABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="RECEIVABLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_LastModifiedBy_UserId">
+          <End Role="USER" Type="ARModel.Store.USER" Multiplicity="0..1" />
+          <End Role="PAYMENT" Type="ARModel.Store.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceivableInterest_Id">
+          <End Role="SALES" Type="ARModel.Store.SALES" Multiplicity="1" />
+          <End Role="RECEIVABLEINTEREST" Type="ARModel.Store.RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceivableInterest_UserId">
+          <End Role="USER" Type="ARModel.Store.USER" Multiplicity="0..1" />
+          <End Role="RECEIVABLEINTEREST" Type="ARModel.Store.RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_CustomerId">
+          <End Role="CREDITOR" Type="ARModel.Store.CREDITOR" Multiplicity="1" />
+          <End Role="SALES" Type="ARModel.Store.SALES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CREDITOR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SALES">
+              <PropertyRef Name="CUSTOMERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_LastModifiedBy_UserId">
+          <End Role="USER" Type="ARModel.Store.USER" Multiplicity="0..1" />
+          <End Role="SALES" Type="ARModel.Store.SALES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="SALES">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLog_UserId">
+          <End Role="USER" Type="ARModel.Store.USER" Multiplicity="0..1" />
+          <End Role="USERLOG" Type="ARModel.Store.USERLOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="USERLOG">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FOREIGN">
+          <End Role="USER" Type="ARModel.Store.USER" Multiplicity="0..1" />
+          <End Role="CREDITOR" Type="ARModel.Store.CREDITOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="CREDITOR">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ARModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="USERs" EntityType="ARModel.USER" />
+          <EntitySet Name="CREDITORs" EntityType="ARModel.CREDITOR" />
+          <EntitySet Name="PAYMENTs" EntityType="ARModel.PAYMENT" />
+          <EntitySet Name="RECEIVABLEs" EntityType="ARModel.RECEIVABLE" />
+          <EntitySet Name="SALES" EntityType="ARModel.SALE" />
+          <AssociationSet Name="FK_Sales_CustomerId" Association="ARModel.FK_Sales_CustomerId">
+            <End Role="CREDITOR" EntitySet="CREDITORs" />
+            <End Role="SALE" EntitySet="SALES" />
+          </AssociationSet>
+          <AssociationSet Name="FOREIGN" Association="ARModel.FOREIGN">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="CREDITOR" EntitySet="CREDITORs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_ARId" Association="ARModel.FK_PayMent_ARId">
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLEs" />
+            <End Role="PAYMENT" EntitySet="PAYMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_LastModifiedBy_UserId" Association="ARModel.FK_PayMent_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="PAYMENT" EntitySet="PAYMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AR_LastModifiedBy_UserId" Association="ARModel.FK_AR_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AR_SalesId" Association="ARModel.FK_AR_SalesId">
+            <End Role="SALE" EntitySet="SALES" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_LastModifiedBy_UserId" Association="ARModel.FK_Sales_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="SALE" EntitySet="SALES" />
+          </AssociationSet>
+          <EntitySet Name="RECEIVABLEINTERESTs" EntityType="ARModel.RECEIVABLEINTEREST" />
+          <AssociationSet Name="FK_ReceivableInterest_Id" Association="ARModel.FK_ReceivableInterest_Id">
+            <End Role="SALE" EntitySet="SALES" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTERESTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceivableInterest_UserId" Association="ARModel.FK_ReceivableInterest_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTERESTs" />
+          </AssociationSet>
+          <EntitySet Name="USERLOGs" EntityType="ARModel.USERLOG" />
+          <AssociationSet Name="FK_UserLog_UserId" Association="ARModel.FK_UserLog_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="USERLOG" EntitySet="USERLOGs" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Type="Int32" Name="USERID" Nullable="false" />
+          <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMAIL" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATEDDATE" />
+          <Property Type="Int16" Name="ACTIVE" Nullable="false" />
+          <NavigationProperty Name="CREDITORs" Relationship="ARModel.FOREIGN" FromRole="USER" ToRole="CREDITOR" />
+          <NavigationProperty Name="PAYMENTs" Relationship="ARModel.FK_PayMent_LastModifiedBy_UserId" FromRole="USER" ToRole="PAYMENT" />
+          <NavigationProperty Name="RECEIVABLEs" Relationship="ARModel.FK_AR_LastModifiedBy_UserId" FromRole="USER" ToRole="RECEIVABLE" />
+          <NavigationProperty Name="SALES" Relationship="ARModel.FK_Sales_LastModifiedBy_UserId" FromRole="USER" ToRole="SALE" />
+          <NavigationProperty Name="RECEIVABLEINTERESTs" Relationship="ARModel.FK_ReceivableInterest_UserId" FromRole="USER" ToRole="RECEIVABLEINTEREST" />
+          <Property Type="Int16" Name="LOGGED" Nullable="false" />
+          <NavigationProperty Name="USERLOGs" Relationship="ARModel.FK_UserLog_UserId" FromRole="USER" ToRole="USERLOG" />
+        </EntityType>
+        <EntityType Name="CREDITOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ADDRESS" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMAIL" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PHONE" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ACTIVE" Nullable="false" />
+          <Property Type="Int32" Name="LASTMODIFIEDBY" />
+          <Property Type="DateTime" Name="LASTDATEMODIFIED" Nullable="false" />
+          <Property Type="DateTime" Name="DATECREATED" />
+          <NavigationProperty Name="SALES" Relationship="ARModel.FK_Sales_CustomerId" FromRole="CREDITOR" ToRole="SALE" />
+          <NavigationProperty Name="USER" Relationship="ARModel.FOREIGN" FromRole="CREDITOR" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PAYMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RECEIVABLEID" Nullable="false" />
+          <Property Type="Decimal" Name="AMOUNT" Nullable="false" Precision="9" Scale="5" />
+          <Property Type="Int32" Name="LASTMODIFIEDBY" />
+          <Property Type="DateTime" Name="LASTMODIFIEDDATE" Nullable="false" />
+          <Property Type="DateTime" Name="PAYMENTDATE" Nullable="false" />
+          <NavigationProperty Name="RECEIVABLE" Relationship="ARModel.FK_PayMent_ARId" FromRole="PAYMENT" ToRole="RECEIVABLE" />
+          <NavigationProperty Name="USER" Relationship="ARModel.FK_PayMent_LastModifiedBy_UserId" FromRole="PAYMENT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="RECEIVABLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SALESID" />
+          <Property Type="Decimal" Name="AMOUNTDUE" Nullable="false" Precision="9" Scale="2" />
+          <Property Type="DateTime" Name="DUEDATE" Nullable="false" />
+          <Property Type="Decimal" Name="BALANCE" Precision="9" Scale="2" />
+          <Property Type="Int32" Name="ISPAID" Nullable="false" />
+          <Property Type="Int32" Name="LASTMODIFIEDBYID" />
+          <Property Type="DateTime" Name="LASTMODIFIEDDATE" Nullable="false" />
+          <Property Type="DateTime" Name="DATECREATED" />
+          <NavigationProperty Name="PAYMENTs" Relationship="ARModel.FK_PayMent_ARId" FromRole="RECEIVABLE" ToRole="PAYMENT" />
+          <NavigationProperty Name="USER" Relationship="ARModel.FK_AR_LastModifiedBy_UserId" FromRole="RECEIVABLE" ToRole="USER" />
+          <NavigationProperty Name="SALE" Relationship="ARModel.FK_AR_SalesId" FromRole="RECEIVABLE" ToRole="SALE" />
+        </EntityType>
+        <EntityType Name="SALE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CUSTOMERID" Nullable="false" />
+          <Property Type="String" Name="ITEM" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="QTY" Nullable="false" />
+          <Property Type="Decimal" Name="UNITPRICE" Nullable="false" Precision="9" Scale="2" />
+          <Property Type="Decimal" Name="TOTALPRICE" Nullable="false" Precision="9" Scale="2" />
+          <Property Type="DateTime" Name="SALESDATE" Nullable="false" />
+          <Property Type="Int32" Name="LASTMODIFIEDBY" />
+          <Property Type="DateTime" Name="LASTMODIFIEDDATE" Nullable="false" />
+          <NavigationProperty Name="CREDITOR" Relationship="ARModel.FK_Sales_CustomerId" FromRole="SALE" ToRole="CREDITOR" />
+          <NavigationProperty Name="RECEIVABLEs" Relationship="ARModel.FK_AR_SalesId" FromRole="SALE" ToRole="RECEIVABLE" />
+          <NavigationProperty Name="USER" Relationship="ARModel.FK_Sales_LastModifiedBy_UserId" FromRole="SALE" ToRole="USER" />
+          <NavigationProperty Name="RECEIVABLEINTERESTs" Relationship="ARModel.FK_ReceivableInterest_Id" FromRole="SALE" ToRole="RECEIVABLEINTEREST" />
+        </EntityType>
+        <Association Name="FK_Sales_CustomerId">
+          <End Type="ARModel.CREDITOR" Role="CREDITOR" Multiplicity="1" />
+          <End Type="ARModel.SALE" Role="SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CREDITOR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="CUSTOMERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FOREIGN">
+          <End Type="ARModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ARModel.CREDITOR" Role="CREDITOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="CREDITOR">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_ARId">
+          <End Type="ARModel.RECEIVABLE" Role="RECEIVABLE" Multiplicity="1" />
+          <End Type="ARModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECEIVABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="RECEIVABLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_LastModifiedBy_UserId">
+          <End Type="ARModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ARModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AR_LastModifiedBy_UserId">
+          <End Type="ARModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ARModel.RECEIVABLE" Role="RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="LASTMODIFIEDBYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AR_SalesId">
+          <End Type="ARModel.SALE" Role="SALE" Multiplicity="0..1" />
+          <End Type="ARModel.RECEIVABLE" Role="RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_LastModifiedBy_UserId">
+          <End Type="ARModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ARModel.SALE" Role="SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RECEIVABLEINTEREST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SALESID" Nullable="false" />
+          <Property Type="Int32" Name="MONTHSTOPAY" Nullable="false" />
+          <Property Type="Decimal" Name="MONTHLYINTEREST" Nullable="false" Precision="5" Scale="0" />
+          <Property Type="Int32" Name="LASTMODIFIEDBY" />
+          <Property Type="DateTime" Name="LASTMODIFIEDDATE" Nullable="false" />
+          <NavigationProperty Name="SALE" Relationship="ARModel.FK_ReceivableInterest_Id" FromRole="RECEIVABLEINTEREST" ToRole="SALE" />
+          <NavigationProperty Name="USER" Relationship="ARModel.FK_ReceivableInterest_UserId" FromRole="RECEIVABLEINTEREST" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK_ReceivableInterest_Id">
+          <End Type="ARModel.SALE" Role="SALE" Multiplicity="1" />
+          <End Type="ARModel.RECEIVABLEINTEREST" Role="RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceivableInterest_UserId">
+          <End Type="ARModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ARModel.RECEIVABLEINTEREST" Role="RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="USERLOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="USERID" />
+          <Property Type="DateTime" Name="DATETIMELOGIN" Nullable="false" />
+          <Property Type="DateTime" Name="DATETIMELOGOUT" />
+          <Property Type="String" Name="BROWSER" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IPADD" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USER" Relationship="ARModel.FK_UserLog_UserId" FromRole="USERLOG" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK_UserLog_UserId">
+          <End Type="ARModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="ARModel.USERLOG" Role="USERLOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="USERLOG">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ARModelStoreContainer" CdmEntityContainer="AREntities">
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="ARModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="LOGGED" ColumnName="LOGGED" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CREDITORs">
+            <EntityTypeMapping TypeName="ARModel.CREDITOR">
+              <MappingFragment StoreEntitySet="CREDITOR">
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="LASTDATEMODIFIED" ColumnName="LASTDATEMODIFIED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENTs">
+            <EntityTypeMapping TypeName="ARModel.PAYMENT">
+              <MappingFragment StoreEntitySet="PAYMENT">
+                <ScalarProperty Name="PAYMENTDATE" ColumnName="PAYMENTDATE" />
+                <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="RECEIVABLEID" ColumnName="RECEIVABLEID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECEIVABLEs">
+            <EntityTypeMapping TypeName="ARModel.RECEIVABLE">
+              <MappingFragment StoreEntitySet="RECEIVABLE">
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+                <ScalarProperty Name="LASTMODIFIEDBYID" ColumnName="LASTMODIFIEDBYID" />
+                <ScalarProperty Name="ISPAID" ColumnName="ISPAID" />
+                <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+                <ScalarProperty Name="DUEDATE" ColumnName="DUEDATE" />
+                <ScalarProperty Name="AMOUNTDUE" ColumnName="AMOUNTDUE" />
+                <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALES">
+            <EntityTypeMapping TypeName="ARModel.SALE">
+              <MappingFragment StoreEntitySet="SALES">
+                <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="SALESDATE" ColumnName="SALESDATE" />
+                <ScalarProperty Name="TOTALPRICE" ColumnName="TOTALPRICE" />
+                <ScalarProperty Name="UNITPRICE" ColumnName="UNITPRICE" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="CUSTOMERID" ColumnName="CUSTOMERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECEIVABLEINTERESTs">
+            <EntityTypeMapping TypeName="ARModel.RECEIVABLEINTEREST">
+              <MappingFragment StoreEntitySet="RECEIVABLEINTEREST">
+                <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="MONTHLYINTEREST" ColumnName="MONTHLYINTEREST" />
+                <ScalarProperty Name="MONTHSTOPAY" ColumnName="MONTHSTOPAY" />
+                <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERLOGs">
+            <EntityTypeMapping TypeName="ARModel.USERLOG">
+              <MappingFragment StoreEntitySet="USERLOG">
+                <ScalarProperty Name="IPADD" ColumnName="IPADD" />
+                <ScalarProperty Name="BROWSER" ColumnName="BROWSER" />
+                <ScalarProperty Name="DATETIMELOGOUT" ColumnName="DATETIMELOGOUT" />
+                <ScalarProperty Name="DATETIMELOGIN" ColumnName="DATETIMELOGIN" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ARModel">
+        <EntityTypeShape EntityType="ARModel.USER" Width="1.5" PointX="0.5" PointY="0.5" Height="2.7494921875" />
+        <EntityTypeShape EntityType="ARModel.CREDITOR" Width="1.5" PointX="2.75" PointY="5.875" Height="3.1340950520833335" />
+        <EntityTypeShape EntityType="ARModel.PAYMENT" Width="1.5" PointX="9.5" PointY="1.5" Height="2.5571907552083322" />
+        <EntityTypeShape EntityType="ARModel.RECEIVABLE" Width="1.5" PointX="7.25" PointY="1.75" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="ARModel.SALE" Width="1.5" PointX="5" PointY="3.125" Height="3.3263964843749996" />
+        <AssociationConnector Association="ARModel.FK_Sales_CustomerId" >
+          <ConnectorPoint PointX="4.25" PointY="6.2593489583333328" />
+          <ConnectorPoint PointX="5" PointY="6.2593489583333328" />
+        </AssociationConnector>
+        <AssociationConnector Association="ARModel.FOREIGN" >
+          <ConnectorPoint PointX="1.25" PointY="4.0186979166666665" />
+          <ConnectorPoint PointX="1.25" PointY="7.4420475260416667" />
+          <ConnectorPoint PointX="2.75" PointY="7.4420475260416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="ARModel.FK_PayMent_ARId" >
+          <ConnectorPoint PointX="8.75" PointY="2.9035953776041659" />
+          <ConnectorPoint PointX="9.5" PointY="2.9035953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="ARModel.FK_PayMent_LastModifiedBy_UserId" >
+          <ConnectorPoint PointX="2" PointY="0.78125" />
+          <ConnectorPoint PointX="10.25" PointY="0.78125" />
+          <ConnectorPoint PointX="10.25" PointY="1.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="ARModel.FK_AR_LastModifiedBy_UserId" >
+          <ConnectorPoint PointX="2" PointY="0.95312749999999991" />
+          <ConnectorPoint PointX="8" PointY="0.95312749999999991" />
+          <ConnectorPoint PointX="8" PointY="1.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="ARModel.FK_AR_SalesId" >
+          <ConnectorPoint PointX="6.5" PointY="4.1006982421875" />
+          <ConnectorPoint PointX="7.25" PointY="4.1006982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="ARModel.FK_Sales_LastModifiedBy_UserId" >
+          <ConnectorPoint PointX="2" PointY="3.785543619791667" />
+          <ConnectorPoint PointX="5" PointY="3.785543619791667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ARModel.RECEIVABLEINTEREST" Width="1.5" PointX="10.25" PointY="5.25" Height="2.5571907552083317" />
+        <AssociationConnector Association="ARModel.FK_ReceivableInterest_Id" >
+          <ConnectorPoint PointX="6.5" PointY="5.9468489583333328" />
+          <ConnectorPoint PointX="10.25" PointY="5.9468489583333328" />
+        </AssociationConnector>
+        <AssociationConnector Association="ARModel.FK_ReceivableInterest_UserId" >
+          <ConnectorPoint PointX="2" PointY="0.60937250000000009" />
+          <ConnectorPoint PointX="11.40625" PointY="0.60937250000000009" />
+          <ConnectorPoint PointX="11.40625" PointY="5.25" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ARModel.USERLOG" Width="1.5" PointX="3.125" PointY="1.125" Height="2.3648893229166674" />
+        <AssociationConnector Association="ARModel.FK_UserLog_UserId" >
+          <ConnectorPoint PointX="2" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="3.125" PointY="2.3074446614583337" />
+        </AssociationConnector>
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

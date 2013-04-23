@@ -1,0 +1,12 @@
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll.config
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\ARAthena.Tests.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\athena.AR.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\athena.AR.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\obj\Debug\ARAthena.Tests.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\obj\Debug\ARAthena.Tests.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\athena.AR.Library.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\athena.AR.Data.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\athena.AR.Library.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\bin\Debug\athena.AR.Data.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\obj\Debug\ResolveAssemblyReference.cache

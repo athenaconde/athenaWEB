@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="95a8ea71-8a49-452d-93c4-63656253f7a2" name="Ricky@RICKYPC 2012-10-26 23:03:41" runUser="Rickypc\Ricky" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="62065322-eec6-4c83-a608-dddf7508a15d">
+    <Deployment runDeploymentRoot="Ricky_RICKYPC 2012-10-26 23_03_41">
+      <DeploymentItem filename="D:\.NET Projects\Account Receivables\ARAthena\bin\ARAthena.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-10-26T23:03:41.6318363+08:00" queuing="2012-10-26T23:03:44.7419049+08:00" start="2012-10-26T23:03:44.9519052+08:00" finish="2012-10-26T23:03:45.7719063+08:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="2" executed="2" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="About" storage="d:\.net projects\account receivables\arathena.tests\bin\debug\arathena.tests.dll" id="50479630-3174-94aa-5359-3957dac0266b">
+      <Execution id="8dd39552-93f2-443f-871a-f1516e71955f" />
+      <TestMethod codeBase="D:/.NET Projects/Account Receivables/ARAthena.Tests/bin/Debug/ARAthena.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ARAthena.Tests.Controllers.HomeControllerTest, ARAthena.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="About" />
+    </UnitTest>
+    <UnitTest name="Index" storage="d:\.net projects\account receivables\arathena.tests\bin\debug\arathena.tests.dll" id="984f5038-afa5-72f6-c921-cbc6a6b1fe18">
+      <Execution id="bbcae6ed-2e8f-42cd-a186-aad60cd12733" />
+      <TestMethod codeBase="D:/.NET Projects/Account Receivables/ARAthena.Tests/bin/Debug/ARAthena.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ARAthena.Tests.Controllers.HomeControllerTest, ARAthena.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Index" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="50479630-3174-94aa-5359-3957dac0266b" executionId="8dd39552-93f2-443f-871a-f1516e71955f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="984f5038-afa5-72f6-c921-cbc6a6b1fe18" executionId="bbcae6ed-2e8f-42cd-a186-aad60cd12733" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="8dd39552-93f2-443f-871a-f1516e71955f" testId="50479630-3174-94aa-5359-3957dac0266b" testName="About" computerName="RICKYPC" duration="00:00:00.1280482" startTime="2012-10-26T23:03:45.0219052+08:00" endTime="2012-10-26T23:03:45.6919062+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8dd39552-93f2-443f-871a-f1516e71955f">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ARAthena.Tests.Controllers.HomeControllerTest.About threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at ARAthena.Controllers.HomeController.About() in D:\.NET Projects\Account Receivables\ARAthena\Controllers\HomeController.cs:line 59
+   at ARAthena.Tests.Controllers.HomeControllerTest.About() in D:\.NET Projects\Account Receivables\ARAthena.Tests\Controllers\HomeControllerTest.cs:line 35
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="bbcae6ed-2e8f-42cd-a186-aad60cd12733" testId="984f5038-afa5-72f6-c921-cbc6a6b1fe18" testName="Index" computerName="RICKYPC" duration="00:00:00.0035325" startTime="2012-10-26T23:03:45.7019062+08:00" endTime="2012-10-26T23:03:45.7019062+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bbcae6ed-2e8f-42cd-a186-aad60cd12733">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ARAthena.Tests.Controllers.HomeControllerTest.Index threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at ARAthena.Controllers.HomeController.Index() in D:\.NET Projects\Account Receivables\ARAthena\Controllers\HomeController.cs:line 15
+   at ARAthena.Tests.Controllers.HomeControllerTest.Index() in D:\.NET Projects\Account Receivables\ARAthena.Tests\Controllers\HomeControllerTest.cs:line 22
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

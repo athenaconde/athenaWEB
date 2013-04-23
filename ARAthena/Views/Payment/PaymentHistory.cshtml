@@ -1,0 +1,52 @@
+﻿@model IEnumerable<athena.AR.Models.PaymentModel>
+
+@{
+    ViewBag.Title = "Athena Accounts Receivable";
+}
+<div class="metro-chrome-button" onclick="return getAction('/Payment/Submit')">
+<H3  style="margin:0px 0 0 10px;">+</h3>
+</div>
+<div style="postion: absolute;margin:-10px 50px;"><p>Create new payment</p></div>
+<br/>  <br/>              
+<table>
+    <tr>
+        <th>
+            Receivable Id
+        </th>
+        <th>
+            AmountPaid
+        </th>
+         <th>
+            PaymentDate
+        </th>
+         <th>
+            Date Encoded
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountReceivable.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayAmount)
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.PaymentDate)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.EncodedDate)
+        </td>
+    </tr>
+}
+
+</table>
+
+
+ <div style="right:0; width:100%;">
+                <div id="prev-div" class="float-left" title="@ViewBag.PrevStat">
+                 <input type="submit" class="metro-button" value="Prev" onclick="return getAction('/Payment/PaymentHistory?startIndex=@ViewBag.LastIndex')"/> </div>
+                  <div style="float:left; bottom:0; margin-left:50px">   @ViewBag.RecordRange </div>
+                  <div id="next-div" style="float:left" title="@ViewBag.NextStat">   <input type="submit" class="metro-button" value="Next" onclick="return getAction('/Payment/PaymentHistory?startIndex=@ViewBag.NextIndex')"/> </div>
+ </div>

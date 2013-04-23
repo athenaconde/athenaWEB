@@ -1,0 +1,107 @@
+CREATE TABLE DATA.USER
+(
+	UserId int Primary Key not null generated as identity (start with 1, increment by 1),
+	UserName varchar(50) not null,
+	Password varchar(100) not null,
+	Email varchar(100) null,
+	CreatedDate timestamp,
+	Active smallint default 0,
+	Constraint UK_UserName Unique (UserName)	 
+);
+
+CREATE TABLE DATA.Creditor
+(
+	Id int primary key not null generated as identity (start with 1, increment by 1),
+	Name varchar(150) not null unique,
+	Address varchar(200),
+	Email varchar(150),
+	Phone varchar(15),
+	Active int not null with default 0,
+	LastModifiedBy int foreign References DATA.User (UserId),
+	LastDateModified TimeStamp not null,
+	DateCreated TimeStamp
+	
+);
+
+CREATE TABLE DATA.Sales
+(
+	Id int not null generated as identity (start with 1, increment by 1) ,
+	CustomerId int not null,
+	Item varchar(150) not null,
+	Qty int not null with default 1,
+	UnitPrice decimal (9,2)  not null,
+	TotalPrice decimal (9,2)  not null,
+	SalesDate TimeStamp not null,
+	LastModifiedBy int,
+	LastModifiedDate TimeStamp not null,
+	constraint "PK_Sales_Id" primary key (Id),
+	Constraint "FK_Sales_LastModifiedBy_UserId" Foreign key (LastModifiedBy) References DATA.User (UserId),
+	Constraint "FK_Sales_CustomerId"  foreign key (CustomerId) references DATA.Creditor (Id)
+);
+
+
+CREATE TABLE DATA.Receivable
+(
+	Id int not null generated as identity (start with 1, increment by 1) primary key,
+	SalesId int ,
+	AmountDue decimal (9,2) not null,
+	DueDate TimeStamp not null,
+	Balance decimal(9,2),
+	IsPaid int not null default 0,
+	LastModifiedById int ,
+	LastModifiedDate TimeStamp not null,
+	DateCreated timestamp,
+	Constraint "FK_AR_SalesId" Foreign key (SalesId) References DATA.Sales (Id),
+	Constraint "FK_AR_LastModifiedBy_UserId" Foreign key (LastModifiedById) References DATA.User (UserId)
+);
+
+CREATE TABLE DATA.Payment
+(
+	Id int not null generated as identity (start with 1, increment by 1) ,
+	ReceivableId int not null,
+	Amount decimal (9,5) not null,
+	LastModifiedBy int,
+	LastModifiedDate TimeStamp not null,
+	PaymentDate timestamp not null,
+	constraint "PK_Payment_Id" primary key (Id),
+	Constraint "FK_PayMent_LastModifiedBy_UserId" Foreign key (LastModifiedBy) References DATA.User (UserId),
+	Constraint "FK_PayMent_ARId" Foreign key (ReceivableId) references DATA.Receivable (Id)
+)
+;
+
+CREATE TABLE DATA.ReceivableInterest
+(
+	Id int primary key not null generated as identity (start with 1, increment by 1),
+	SalesId int not null ,
+	MonthsToPay int not null default 1,
+	MonthlyInterest decimal(5,5) not null default 0,
+	LastModifiedBy int,
+	LastModifiedDate TimeStamp not null,
+	Constraint "FK_ReceivableInterest_Id"  Foreign Key (SalesId) References DATA.Sales ( Id),
+	Constraint "UK_ReceivableInterest_Id" Unique (SalesId),
+	Constraint "FK_ReceivableInterest_UserId"  Foreign Key (LastModifiedBy ) References DATA.User (UserId)
+
+);
+
+---ADDED 01/11/2013
+
+-- <ScriptOptions statementTerminator=";" />
+ALTER TABLE DATA.USER ADD COLUMN LOGGED SMALLINT NOT NULL WITH DEFAULT 0;
+CALL SYSPROC.ADMIN_CMD( 'REORG TABLE DATA.USER' );
+CALL SYSPROC.ADMIN_CMD( 'RUNSTATS ON TABLE DATA.USER' );
+
+--User log table
+CREATE TABLE DATA.USERLOG
+(
+	ID INT PRIMARY KEY GENERATED AS IDENTITY(START WITH 1, INCREMENT BY 1),
+	USERID INT ,
+	DATETIMELOGIN TIMESTAMP NOT NULL,
+	DATETIMELOGOUT TIMESTAMP NULL,
+	BROWSER VARCHAR(100),
+	IPADD VARCHAR(20)
+	
+);
+
+ALTER TABLE "DATA"."USERLOG" ADD CONSTRAINT "FK_UserLog_UserId" FOREIGN KEY ("USERID") REFERENCES DATA.USER(USERID);
+
+

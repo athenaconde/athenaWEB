@@ -1,0 +1,57 @@
+﻿
+
+@{
+    ViewBag.Title = "Athena Accounts Receivable";
+}
+ <div class="page">
+                     
+       <div id="title">
+                <div  id="logo"> <h1>Receivables</h1></div>
+                  <BR/><BR/>
+ 		            <a href="/" style="color:#fff;"><div class="back-to-main-button" title="Click here to go back to main menu"><H3  style="margin:0px 0 0 5px;">←</h3></div></a> <br/>              
+                 <div id="logindisplay">
+                     @Html.Partial("_LogOnPartial")
+                </div>                                
+         </div>    
+       
+    </div>    
+<div id="content">
+    <br />
+    <div class="float-left" style="width:16%;">
+        <ul class="menu">
+            <li><a id="all" href="#" onclick="return getReceivables(0)">All Receivables</a></li>
+            <li><a id="balances" href="#" onclick="return getReceivables(1)">Outstanding Balances</a></li>
+            <li><a id="paid" href="#" onclick="return getReceivables(2)">Paid</a></li>
+        </ul>
+    </div>
+    <div id="receivablesWorkspace" class="float-right" style="width:80%;">
+
+
+    </div>
+
+</div>
+ @*<div id="footer2">
+            <input type="button" class="metro-button" onclick="return getReceivables(0)" value="All" /> 	    
+            <input type="button" id="his" class="metro-button" onclick="return getReceivables(2)" value="Paid" /> 
+           <input id="balances" type="button" id="all" class="metro-button" onclick="return getReceivables(1)" value="Outstanding balances" /> 
+        </div>*@
+       <div id="footer">
+            Copyright Athena © 2012. All rights reserved.
+        </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#balances').click();
+    });
+
+    function getReceivables(param) {
+        if (param == null)
+            param = "0";
+        $.get('/Receivable/Receivables?param=' + param, function (data) {
+            var workspceWidth = $('#receivablesWorkspace').width();
+            $('#receivablesWorkspace').empty();
+            $('#receivablesWorkspace').width = workspceWidth;
+            $('#receivablesWorkspace').append(data);
+        });
+
+    };
+</script>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<athena.AR.Models.ReceivableModel>
+<table>
+    <tr>
+        <th>Receivable Id</th>       
+        <th>Customer</th>       
+        <th>Payment Due</th>       
+        <th>Payment Due Date</th>
+        <th>Running Balance</th>
+        <th>Last Paid Date</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.PaymentDue)
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.PaymentDueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Balance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastPaidDate)
+        </td>
+        <td>
+         @*   @Html.ActionLink("Edit", "Edit", new { item.Id }) |
+            @Html.ActionLink("Submit payment", "Submit", "Payment", new { item.Id }) |
+            @Html.ActionLink("Payment history", "PaymentHistory", "Payment", new { item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { item.Id })*@
+            ˅
+        </td>
+    </tr>
+}
+
+</table>  
+  <div style="right:0; width:100%;">
+                <div id="prev-div" class="float-left" title="@ViewBag.PrevStat">
+                 <input type="submit" class="metro-button" value="Prev" onclick="return getReceivables('@ViewBag.Param&startIndex=@ViewBag.LastIndex')"/> </div>
+                  <div style="float:left; bottom:0; margin-left:50px">   @ViewBag.RecordRange </div>
+                  <div id="next-div" style="float:left" title="@ViewBag.NextStat">   <input type="submit" class="metro-button" value="Next" onclick="return getReceivables('@ViewBag.Param&startIndex=@ViewBag.NextIndex')"/> </div>
+ </div>
+

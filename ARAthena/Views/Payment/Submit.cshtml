@@ -1,0 +1,42 @@
+﻿@model athena.AR.Models.PaymentModel
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+ 
+        <legend>Payment Entry</legend>
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountReceivable.Id) 
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AccountReceivable.Id)
+            @Html.ValidationMessageFor(model => model.AccountReceivable.Id)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PayAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PayAmount)
+            @Html.ValidationMessageFor(model => model.PayAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PaymentDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PaymentDate)
+            @Html.ValidationMessageFor(model => model.PaymentDate)
+        </div>
+
+        <p>
+            <input type="submit" class="metro-button" value="Submit" />
+        </p>
+ 
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.editor-field :input:first').focus();
+    });
+</script>

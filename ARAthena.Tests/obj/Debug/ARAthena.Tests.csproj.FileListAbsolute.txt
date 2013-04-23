@@ -1,0 +1,34 @@
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll.config
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.Tests.pdb
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.dll
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.pdb
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\obj\Debug\ARAthena.Tests.csprojResolveAssemblyReference.cache
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\obj\Debug\ARAthena.Tests.dll
+F:\RAConde\.NET Programs\Accounts Receivable for Athena\ARAthena.Tests\obj\Debug\ARAthena.Tests.pdb
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll.config
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.Tests.pdb
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.dll
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\bin\Debug\ARAthena.pdb
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\obj\Debug\ARAthena.Tests.dll
+D:\.NET Projects\Accounts Receivable for Athena\ARAthena.Tests\obj\Debug\ARAthena.Tests.pdb
+D:\.NET Projects\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll.config
+D:\.NET Projects\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll
+D:\.NET Projects\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.Tests.pdb
+D:\.NET Projects\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.dll
+D:\.NET Projects\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.pdb
+D:\.NET Projects\Account Receivables\ARAthena.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\.NET Projects\Account Receivables\ARAthena.Tests\obj\Debug\ARAthena.Tests.dll
+D:\.NET Projects\Account Receivables\ARAthena.Tests\obj\Debug\ARAthena.Tests.pdb
+I:\Others®\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll.config
+I:\Others®\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.Tests.dll
+I:\Others®\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.Tests.pdb
+I:\Others®\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.dll
+I:\Others®\Account Receivables\ARAthena.Tests\bin\Debug\ARAthena.pdb
+I:\Others®\Account Receivables\ARAthena.Tests\obj\Debug\ARAthena.Tests.csprojResolveAssemblyReference.cache
+I:\Others®\Account Receivables\ARAthena.Tests\obj\Debug\ARAthena.Tests.dll
+I:\Others®\Account Receivables\ARAthena.Tests\obj\Debug\ARAthena.Tests.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\obj\Debug\ARAthena.Tests.csprojResolveAssemblyReference.cache
+F:\RAConde\.NET Programs\athena\athena.AR.Web\ARAthena.Tests\obj\Debug\ARAthena.Tests.pdb

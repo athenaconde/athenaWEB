@@ -1,0 +1,53 @@
+﻿@model IEnumerable<athena.AR.Models.PaymentModel>
+@{
+    ViewBag.Title = "Athena Accounts Receivable";
+}
+           
+
+                     
+        <div id="title">
+                <div  id="logo"><h1>Payments</h1></div>  
+                <BR/><BR/>
+ 		<a href="/" style="color:#fff;"><div class="back-to-main-button" title="Click here to go back to main menu"><H3  style="margin:0px 0 0 5px;">←</h3></div></a> <br/>              
+                 <div id="logindisplay">
+                     @Html.Partial("_LogOnPartial")
+                </div>                                
+         </div>   
+       
+   
+<div id="content">
+<br />
+       @* <div>
+            <input type="submit" class="metro-button" onclick="return getAction('/Payment/Submit')" value="+" />
+        </div>*@
+        <div class="float-left" style="width:16%;">
+            <ul class="menu">
+                <li><a id="his" href="#" onclick="return getAction('/Payment/PaymentHistory');">All submitted</a></li>
+            </ul>
+        </div>
+	<div id="paymentWorkspace" class="float-right" style="width:75%;"></div>    
+<br />
+
+</div> 
+@*<div id="footer2">
+            <input type="button" class="metro-button" onclick="return getAction('/Payment/Submit')" value="Submit" /> 
+	     <input type="button" id="all" class="metro-button" onclick="return getAction('/Payment/PaymentHistory')" value="History" /> 
+        </div>*@
+<div id="footer">Copyright Athena © 2012. All rights reserved.</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        return getAction('/Payment/PaymentHistory');
+    });
+
+    function getAction(a) {
+        // $('#paymentWorkspace').hide(1000);
+        $('#paymentWorkspace').empty();
+
+        $.get(a, function (data) {
+            $('#paymentWorkspace').append(data);
+
+//            $('#paymentWorkspace').show(2000);
+        });
+    };
+</script>

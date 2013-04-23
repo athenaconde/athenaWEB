@@ -1,0 +1,22 @@
+﻿@if(Request.IsAuthenticated) {
+    <text>Welcome <strong id="currentUser" onclick="return getActions()" style="cursor:pointer;">@User.Identity.Name</strong>!
+         
+      <div style="font-size:0.7em; font-style:italic">@Html.ActionLink("Log Off", "LogOff", "Account")</div>
+
+   </text>
+}
+
+<script type="text/javascript">
+
+    function getActions() {
+        var currentUserElementTop = $('#currentUser').top();
+        var currentUserElementHeight = $('#currentUser').height();
+        var div = $('<div/>',{style:+"top:"+currentUserElementTop + currentUserElementHeight + "px;" );
+        div.addClass('float-right');
+        var changePass = $("<div/>", { text: "Change password" });
+        var logOff = $("<div/>", { text: "Log Off" });
+        div.append(changePass);
+        div.append(logOff);
+        div.show();
+    };
+</script>

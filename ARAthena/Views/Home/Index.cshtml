@@ -1,0 +1,35 @@
+﻿@model IEnumerable<athena.AR.Models.FunctionModel>
+@{
+    ViewBag.Title = "Athena Accounts Receivable";
+}
+
+ <div class="page">
+                     
+       <div id="title">
+                <div  id="logo"><h1>Athena</h1> </div>
+                <div  id="module">Accounts Receivable</div> 
+                 <div id="logindisplay">
+                     @Html.Partial("_LogOnPartial")
+                </div>                                
+         </div>    
+       
+    </div>    
+<div style="padding:5% 20% 12% 20%">
+
+  @foreach (var function in Model)
+  {
+     <a href="@function.Action" style="color:#fff;"><div class="metro-div-class" style="background-color:@function.Color; ">
+             <div style="display:block; text-align:center">
+                <img src="@function.ImageSrc" alt="" />
+             </div>
+             <div style="font-size:2em;position:relative;bottom:-80px;text-align:left;"> @function.Description1</div>
+      </div></a>
+    
+     
+  } 
+  </div>
+         <div id="footer">
+            Copyright Athena © 2012. All rights reserved.
+        </div>
+
+      
